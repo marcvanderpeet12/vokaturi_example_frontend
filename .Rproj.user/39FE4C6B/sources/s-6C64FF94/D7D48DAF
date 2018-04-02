@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1522650278417.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D7D48DAF",
+    "lastKnownWriteTime" : 1522650303,
+    "last_content_update" : 1522650303071,
+    "path" : "~/vokaturi_example_frontend/app,R.R",
+    "project_path" : "app,R.R",
+    "properties" : {
+        "cursorPosition" : "0,5",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
