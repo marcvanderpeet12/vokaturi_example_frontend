@@ -16,14 +16,36 @@ UI <- fluidPage(
 )
 Server <- function(input, output, session){
   
-  #This will set up 
+  counter <- reactiveVal(1)
   action <- reactiveVal(FALSE)
   
+  observeEvent(input$start_counter, {
+    action(!action())
+  })
+  
+  observe({ invalidateLater(1000, session)
+    isolate({
+      if(action() & counter() < input$stop_time) # MODIFIED - stop at stop time.
+      {
+        # Add 1 to our counter
+        counter(counter() + 1) 
+      }
+      else # ADDED - to stop the timer from running when we modify the start or stop time.
+      {
+        action(FALSE) 
+      }
+    })
+  })
+  
+  observeEvent(input$reset_counter, {
+    counter(input$start_time)
+  })
 
-  pp <- eventReactive(c(input$start_time, input$stop_time), {
+  pp <- eventReactive(c(input$start_time, input$stop_time, counter()), {
     ggplot(mtcars, aes(x = wt, y = mpg)) +
       geom_point() +
-      scale_x_continuous(limits = c(input$start_time, input$stop_time))
+      scale_x_continuous(limits = c(input$start_time, input$stop_time)) +
+      geom_vline(xintercept = counter())
   })
   
   output$plot_timeseries1 <- renderPlot({
